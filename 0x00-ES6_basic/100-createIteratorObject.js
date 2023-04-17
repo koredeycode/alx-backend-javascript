@@ -6,8 +6,9 @@ export default function createIteratorObject(report) {
       return {
         next: () => {
           if (index < this.data.length) {
+            index += 1;
             return {
-              value: this.data[index++],
+              value: this.data[index - 1],
               done: false,
             };
           }
