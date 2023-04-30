@@ -22,6 +22,7 @@ const studentB: Student = {
 const students: Array<Student> = [studentA, studentB];
 
 export function renderStudents(students: Array<Student> ): void {
+  const body = document.getElementsByTagName("body")[0]
   const table = document.createElement("table");
   const headerRow = document.createElement("tr");
   const firstNameHeader = document.createElement("th");
@@ -58,6 +59,7 @@ export function renderStudents(students: Array<Student> ): void {
     row.appendChild(locationCell);
 
     table.appendChild(row);
+	body.appendChild(table);
   });
 }
 renderStudents(students);
