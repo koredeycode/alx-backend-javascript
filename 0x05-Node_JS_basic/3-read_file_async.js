@@ -1,7 +1,10 @@
 const fs = require('fs');
 
 function printStudents(data) {
-  const rows = data.split('\n').slice(1);
+  const rows = data
+    .split('\n')
+    .slice(1)
+    .filter((row) => row.length > 0);
   const students = [];
   rows.forEach((row) => {
     students.push(row.split(','));
@@ -12,12 +15,12 @@ function printStudents(data) {
   console.log(
     `Number of students in CS: ${csstudents.length}. List: ${csstudents
       .map((student) => student[0])
-      .join(', ')}`
+      .join(', ')}`,
   );
   console.log(
     `Number of students in SWE: ${swestudents.length}. List: ${swestudents
       .map((student) => student[0])
-      .join(', ')}`
+      .join(', ')}`,
   );
 }
 
