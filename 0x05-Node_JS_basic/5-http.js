@@ -44,8 +44,7 @@ const app = http.createServer((req, res) => {
     res.write('This is the list of our students\n');
     countStudents('database.csv')
       .then((data) => {
-        res.write(data);
-        res.end();
+        res.end(data);
       })
       .catch((error) => {
         throw error;
