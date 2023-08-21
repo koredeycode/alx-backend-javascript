@@ -3,7 +3,7 @@ const http = require('http');
 
 const DB_FILE = process.argv[2] || '';
 function printStudents(data) {
-  let ret = '';
+  let ret = 'This is the list of our students\n';
   const rows = data
     .split('\n')
     .slice(1)
@@ -29,9 +29,12 @@ function countStudents(path) {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
         reject(new Error('Cannot load the database'));
-        return;
       }
-      resolve(printStudents(data));
+      if (data === undefined) {
+        reject(new Error('Cannot load the database'));
+      } else {
+        resolve(printStudents(data));
+      }
     });
   });
 }
@@ -42,13 +45,13 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
-    res.write('This is the list of our students\n');
     countStudents(DB_FILE)
       .then((data) => {
         res.end(data);
       })
-      .catch((error) => {
-        throw error;
+      .catch((err) => {
+        const errormsg = err instanceof Error ? err.message : err.toString();
+        res.end(errormsg);
       });
   }
 });
