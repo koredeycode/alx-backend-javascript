@@ -23,24 +23,26 @@ export default class StudentsController {
         res.end();
       });
   }
+
   static getAllStudentsByMajor(req, res) {
     const { major } = req.params;
     if (major !== 'CS' && major !== 'SWE') {
       res.status(500);
-      res.send('Major parameter must be CS or SWE');
+      res.send('Major parameter must be CS or SWE\n');
+    } else {
+      readDatabase(process.argv[2])
+        .then((data) => {
+          const students = data[major];
+          res.status(200);
+          res.write(`List: ${students.join(', ')}`);
+        })
+        .catch((err) => {
+          res.status(500);
+          res.write(err.message);
+        })
+        .finally(() => {
+          res.end();
+        });
     }
-    readDatabase(process.argv[2])
-      .then((data) => {
-        const students = data[major];
-        res.status(200);
-        res.write(`List: ${students.join(', ')}`);
-      })
-      .catch((err) => {
-        res.status(500);
-        res.write(err.message);
-      })
-      .finally(() => {
-        res.end();
-      });
   }
 }

@@ -12,11 +12,11 @@ function getStudents(data) {
   const CS = students
     .filter((student) => student.includes('CS'))
     .map((student) => student[0]);
-  const SW = students
+  const SWE = students
     .filter((student) => student.includes('SWE'))
     .map((student) => student[0]);
 
-  return { CS, SW };
+  return { CS, SWE };
 }
 
 export default function readDatabase(path) {
