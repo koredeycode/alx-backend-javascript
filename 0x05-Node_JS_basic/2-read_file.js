@@ -15,12 +15,12 @@ function printStudents(data) {
   console.log(
     `Number of students in CS: ${csstudents.length}. List: ${csstudents
       .map((student) => student[0])
-      .join(', ')}`
+      .join(', ')}`,
   );
   console.log(
     `Number of students in SWE: ${swestudents.length}. List: ${swestudents
       .map((student) => student[0])
-      .join(', ')}`
+      .join(', ')}`,
   );
 }
 function countStudents(path) {
