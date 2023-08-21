@@ -2,6 +2,7 @@ const fs = require('fs');
 const http = require('http');
 
 function printStudents(data) {
+  let ret = '';
   try {
     const rows = data
       .split('\n')
@@ -11,7 +12,6 @@ function printStudents(data) {
     rows.forEach((row) => {
       students.push(row.split(','));
     });
-    let ret = '';
     const csstudents = students.filter((student) => student.includes('CS'));
     const swestudents = students.filter((student) => student.includes('SWE'));
     ret += `Number of students: ${students.length}\n`;
@@ -21,10 +21,11 @@ function printStudents(data) {
     ret += `Number of students in SWE: ${
       swestudents.length
     }. List: ${swestudents.map((student) => student[0]).join(', ')}`;
-    return ret;
   } catch (err) {
     console.log(err);
+    return;
   }
+  return ret;
 }
 
 function countStudents(path) {
