@@ -1,6 +1,8 @@
 const fs = require('fs');
 const express = require('express');
 
+const DB_FILE = process.argv[2] || '';
+
 const app = express();
 
 function printStudents(data) {
@@ -45,7 +47,7 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   res.set('Content-Type', 'text/plain');
   res.write('This is the list of our students\n');
-  countStudents('database.csv')
+  countStudents(DB_FILE)
     .then((data) => {
       res.write(data);
     })

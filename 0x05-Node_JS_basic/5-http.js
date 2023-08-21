@@ -1,6 +1,7 @@
 const fs = require('fs');
 const http = require('http');
 
+const DB_FILE = process.argv[2] || '';
 function printStudents(data) {
   let ret = '';
   const rows = data
@@ -42,7 +43,7 @@ const app = http.createServer((req, res) => {
   }
   if (req.url === '/students') {
     res.write('This is the list of our students\n');
-    countStudents('database.csv')
+    countStudents(DB_FILE)
       .then((data) => {
         res.end(data);
       })
