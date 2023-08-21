@@ -21,6 +21,7 @@ function printStudents(data) {
     ret += `Number of students in SWE: ${
       swestudents.length
     }. List: ${swestudents.map((student) => student[0]).join(', ')}`;
+    return ret;
   } catch (err) {
     console.log(err);
     return;

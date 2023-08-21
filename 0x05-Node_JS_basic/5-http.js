@@ -2,29 +2,25 @@ const fs = require('fs');
 const http = require('http');
 
 function printStudents(data) {
-  try {
-    const rows = data
-      .split('\n')
-      .slice(1)
-      .filter((row) => row.length > 0);
-    const students = [];
-    rows.forEach((row) => {
-      students.push(row.split(','));
-    });
-    let ret = '';
-    const csstudents = students.filter((student) => student.includes('CS'));
-    const swestudents = students.filter((student) => student.includes('SWE'));
-    ret += `Number of students: ${students.length}\n`;
-    ret += `Number of students in CS: ${csstudents.length}. List: ${csstudents
-      .map((student) => student[0])
-      .join(', ')}\n`;
-    ret += `Number of students in SWE: ${
-      swestudents.length
-    }. List: ${swestudents.map((student) => student[0]).join(', ')}`;
-    return ret;
-  } catch (err) {
-    console.log(err);
-  }
+  let ret = '';
+  const rows = data
+    .split('\n')
+    .slice(1)
+    .filter((row) => row.length > 0);
+  const students = [];
+  rows.forEach((row) => {
+    students.push(row.split(','));
+  });
+  const csstudents = students.filter((student) => student.includes('CS'));
+  const swestudents = students.filter((student) => student.includes('SWE'));
+  ret += `Number of students: ${students.length}\n`;
+  ret += `Number of students in CS: ${csstudents.length}. List: ${csstudents
+    .map((student) => student[0])
+    .join(', ')}\n`;
+  ret += `Number of students in SWE: ${swestudents.length}. List: ${swestudents
+    .map((student) => student[0])
+    .join(', ')}`;
+  return ret;
 }
 
 function countStudents(path) {
