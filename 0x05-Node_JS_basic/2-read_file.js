@@ -1,7 +1,10 @@
 const fs = require('fs');
 
 function printStudents(data) {
-  const rows = data.split('\n').slice(1);
+  const rows = data
+    .split('\n')
+    .slice(1)
+    .filter((row) => row.length > 0);
   const students = [];
   rows.forEach((row) => {
     students.push(row.split(','));
