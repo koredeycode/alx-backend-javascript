@@ -3,7 +3,7 @@ const http = require('http');
 
 const DB_FILE = process.argv[2] || '';
 function printStudents(data) {
-  let ret = 'This is the list of our students\n';
+  let ret = '';
   const rows = data
     .split('\n')
     .slice(1)
@@ -45,6 +45,7 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
+    res.write('This is the list of our students\n');
     countStudents(DB_FILE)
       .then((data) => {
         res.end(data);
