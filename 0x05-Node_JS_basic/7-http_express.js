@@ -32,9 +32,12 @@ function countStudents(path) {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
         reject(new Error('Cannot load the database'));
-        return;
       }
-      resolve(printStudents(data));
+      if (data === undefined) {
+        reject(new Error('Cannot load the database'));
+      } else {
+        resolve(printStudents(data));
+      }
     });
   });
 }
@@ -51,8 +54,9 @@ app.get('/students', (req, res) => {
     .then((data) => {
       res.write(data);
     })
-    .catch((error) => {
-      throw error;
+    .catch((err) => {
+      const errormsg = err instanceof Error ? err.message : err.toString();
+      res.write(errormsg);
     })
     .finally(() => {
       res.end();
