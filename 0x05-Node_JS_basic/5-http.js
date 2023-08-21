@@ -53,8 +53,6 @@ const app = http.createServer((req, res) => {
   }
 });
 
-app.listen(1245, () => {
-  console.log('Server is running on port 3000');
-});
+app.listen(1245);
 
 module.exports = app;
