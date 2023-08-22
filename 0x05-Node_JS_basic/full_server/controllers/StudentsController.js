@@ -7,13 +7,16 @@ export default class StudentsController {
     const DB_FILE = process.argv[2] || '';
     readDatabase(DB_FILE)
       .then((data) => {
+        const output = [];
         Object.entries(data).forEach(([key, value]) => {
-          res.write(
+          output.push(
             `Number of students in ${key}: ${value.length}. List: ${value.join(
               ', ',
-            )}\n`,
+            )}`,
           );
         });
+
+        res.write(output.join('\n'));
       })
       .catch((err) => {
         res.status(500);
