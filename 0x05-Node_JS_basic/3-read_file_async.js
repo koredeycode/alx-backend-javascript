@@ -30,8 +30,12 @@ function countStudents(path) {
       if (err) {
         reject(new Error('Cannot load the database'));
       }
-      printStudents(data);
-      resolve(data);
+      if (data === undefined) {
+        reject(new Error('Cannot load the database'));
+      } else {
+        printStudents(data);
+        resolve(data);
+      }
     });
   });
 }
