@@ -2,8 +2,6 @@ import readDatabase from '../utils';
 
 export default class StudentsController {
   static getAllStudents(req, res) {
-    res.status(200);
-    res.write('This is the list of our students\n');
     const DB_FILE = process.argv[2] || '';
     readDatabase(DB_FILE)
       .then((data) => {
@@ -16,6 +14,8 @@ export default class StudentsController {
           );
         });
 
+        res.write('This is the list of our students\n');
+        res.status(200);
         res.write(output.join('\n'));
       })
       .catch((err) => {
