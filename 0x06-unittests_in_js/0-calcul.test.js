@@ -2,41 +2,26 @@ const calculateNumber = require('./0-calcul.js');
 const assert = require('assert');
 
 describe('calculateNumber', function () {
-  it('should return the sum of two rounded numbers', function () {
-    // Arrange
-    const a = 2.7;
-    const b = 3.4;
-
-    // Acts
-    const result = calculateNumber(a, b);
-
-    // Assert
-    assert.strictEqual(result, Math.round(a) + Math.round(b));
+  const tests = [
+    { a: 1.0, b: 2.0, expected: 3 },
+    { a: 1.0, b: 2.4, expected: 3 },
+    { a: 1.4, b: 2.4, expected: 3 },
+    { a: 1.4, b: 2.0, expected: 3 },
+    { a: 1.0, b: 2.5, expected: 4 },
+    { a: 2.6, b: 2.5, expected: 6 },
+    { a: 2.6, b: 2.0, expected: 5 },
+    { a: 2.499999, b: 3.499999, expected: 5 },
+    { a: 2.7, b: 3.4, expected: 6 },
+    { a: 5, b: 10, expected: 15 },
+    { a: -3, b: -7, expected: -10 },
+    { a: 0, b: 5, expected: 5 },
+    { a: 2.5, b: -1.5, expected: 2 },
+  ];
+  tests.forEach(({ a, b, expected }) => {
+    describe(`when passed ${a} and ${b}`, function () {
+      it(`should return ${expected}`, function () {
+        assert.strictEqual(calculateNumber(a, b), expected);
+      });
+    });
   });
-
-  it('should return correct result for negative numbers', function () {
-    // Arrange
-    const a = -5.6;
-    const b = -3.1;
-
-    // Act
-    const result = calculateNumber(a, b);
-
-    // Assert
-    assert.strictEqual(result, Math.round(a) + Math.round(b));
-  });
-
-  it('should return correct result when one argument is zero', function () {
-    // Arrange
-    const a = 0;
-    const b = 8.9;
-
-    // Act
-    const result = calculateNumber(a, b);
-
-    // Assert
-    assert.strictEqual(result, Math.round(a) + Math.round(b));
-  });
-
-  // Add more test cases as needed
 });
