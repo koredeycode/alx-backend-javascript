@@ -1,0 +1,17 @@
+{
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "In this project, I learned about unittests_in_js as part of my projects for the ALX Software Engineering Programme * Koredeycode",
+  "main": "0-calcul.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "sinon": "^15.2.0"
+  }
+}
