@@ -39,7 +39,7 @@ describe('calculateNumber', function () {
 
   tests.forEach(({ type, a, b, expected }) => {
     it(`should correctly evaluate ${a} ${type} ${b}`, function () {
-      expect(calculateNumber(type, a, b) === expected).to.be.true;
+      expect(calculateNumber(type, a, b)).to.equal(expected);
     });
   });
 });
