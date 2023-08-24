@@ -27,7 +27,7 @@ describe('API integration test', () => {
   it('should respond with 200 for valid cart path', (done) => {
     request.get(`${API_URL}/cart/twelve`, (_err, res, body) => {
       // expect(res.statusCode).to.be.equal(404);
-      expect(res.statusCode).to.be.greaterThanOrEqual(404);
+      expect(res.statusCode).to.be.equal(404);
       done();
     });
   });
