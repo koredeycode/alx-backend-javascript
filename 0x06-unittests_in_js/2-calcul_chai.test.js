@@ -1,5 +1,6 @@
 const calculateNumber = require('./1-calcul.js');
-const assert = require('assert');
+const chai = require('chai');
+const expect = chai.expect;
 
 describe('calculateNumber', function () {
   const tests = [
@@ -38,7 +39,7 @@ describe('calculateNumber', function () {
 
   tests.forEach(({ type, a, b, expected }) => {
     it(`should correctly evaluate ${a} ${type} ${b}`, function () {
-      assert.strictEqual(calculateNumber(type, a, b), expected);
+      expect(calculateNumber(type, a, b) === expected).to.be.true;
     });
   });
 });
